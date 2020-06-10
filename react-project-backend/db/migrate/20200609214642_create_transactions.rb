@@ -4,8 +4,8 @@ class CreateTransactions < ActiveRecord::Migration[6.0]
       t.float :amount
       t.string :debit_credit
       t.string :merchant
-      t.string :account_id
-      t.string :integer
+      t.integer :account_id
+      t.integer :user_id
       t.datetime :date
 
       t.timestamps
