@@ -7,20 +7,23 @@ class Api::V1::TransactionsController < ApplicationController
     end 
 
     def create 
-        transaction = Transaction.new(transaction_params)
-        if transaction.save 
+        transaction = @account.transactions.build(transaction_params)
+        if @account.adjust_balance(transaction) 
+            transaction.save
             render json: transaction
         else 
-            render json: transaction
+            render json: {error: 'Error creating transaction'}
         end 
     end 
 
     def show 
-
+        transaction = @account.transactions.find_by(id: params[:id])
+        render json: transaction
     end 
 
     def destroy 
-
+        transaction = @account.transactions.find_by(id: params[:id])
+        transaction.destroy 
     end 
 
     private 

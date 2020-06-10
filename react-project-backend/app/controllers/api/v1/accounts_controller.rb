@@ -2,26 +2,26 @@ class Api::V1::AccountsController < ApplicationController
     before_action :set_user
 
     def index 
-        account = Account.all 
+        account = @user.accounts 
         render json: account
     end 
 
-    def create
-        account = Account.new(account_params)
-        if accout.save 
+    def create 
+        account = @user.accounts.build(account_params)
+        if account.save 
             render json: account
         else 
-            render json: {error: "Account not created"}
+            ender json: {error: "Account not created"}
         end 
     end 
 
     def show 
-        account = Account.find(params[id])
+        account = @user.accounts.find_by(id: params[:id])
         render json: account 
     end 
 
     def destroy 
-        account = Account.find(params[id])
+        account = @user.accounts.find_by(id: params[:id])
         account.destroy 
     end
 
