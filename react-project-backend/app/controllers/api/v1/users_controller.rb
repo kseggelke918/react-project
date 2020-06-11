@@ -3,7 +3,10 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: @user
+    # options = {
+    #   include: [:account, :transaction]
+    # }
+    render json: UserSerializer.new(@user)
   end
 
   # POST /users
@@ -11,7 +14,7 @@ class Api::V1::UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      render json: @user, status: :created, location: @user
+      render json: UserSerializer.new(@user)
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -20,7 +23,7 @@ class Api::V1::UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
-      render json: @user
+      render json: UserSerializer.new(@user)
     else
       render json: @user.errors, status: :unprocessable_entity
     end

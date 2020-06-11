@@ -2,14 +2,14 @@ class Api::V1::AccountsController < ApplicationController
     before_action :set_user
 
     def index 
-        account = @user.accounts 
-        render json: account
+        accounts = @user.accounts 
+        render json: AccountSerializer.new(accounts)
     end 
 
     def create 
         account = @user.accounts.build(account_params)
         if account.save 
-            render json: account
+            render json: AccountSerializer.new(account)
         else 
             ender json: {error: "Account not created"}
         end 
@@ -17,7 +17,7 @@ class Api::V1::AccountsController < ApplicationController
 
     def show 
         account = @user.accounts.find_by(id: params[:id])
-        render json: account 
+        render json: AccountSerializer.new(account) 
     end 
 
     def destroy 

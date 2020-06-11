@@ -3,14 +3,14 @@ class Api::V1::TransactionsController < ApplicationController
 
     def index 
         transactions = @account.transactions 
-        render json: transactions
+        render json: TransactionSerializer.new(transactions)
     end 
 
     def create 
         transaction = @account.transactions.build(transaction_params)
         if @account.adjust_balance(transaction) 
             transaction.save
-            render json: transaction
+            render json: TransactionSerializer.new(transaction)
         else 
             render json: {error: 'Error creating transaction'}
         end 
@@ -18,7 +18,7 @@ class Api::V1::TransactionsController < ApplicationController
 
     def show 
         transaction = @account.transactions.find_by(id: params[:id])
-        render json: transaction
+        render json: TransactionSerializer.new(transactions)
     end 
 
     def destroy 
