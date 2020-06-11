@@ -12,4 +12,16 @@ class Account < ApplicationRecord
             self.save 
         end 
     end 
+
+    def account_number_generator
+        acct_num = rand(111111..999999)
+        
+        while Account.exists?(account_number: acct_num)
+          acct_num = rand(111111..999999) 
+        end 
+        
+        acct_num
+        
+      end 
+
 end
