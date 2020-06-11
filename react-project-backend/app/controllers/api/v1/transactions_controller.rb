@@ -3,7 +3,7 @@ class Api::V1::TransactionsController < ApplicationController
 
     def index 
         transactions = @account.transactions 
-        render json: transaction
+        render json: transactions
     end 
 
     def create 

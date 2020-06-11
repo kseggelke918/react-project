@@ -28,7 +28,7 @@ class Api::V1::AccountsController < ApplicationController
     private 
 
     def set_user
-        @useer = User.find(params[:user_id])
+        @user = User.find(params[:user_id])
     end 
 
     def account_params 
