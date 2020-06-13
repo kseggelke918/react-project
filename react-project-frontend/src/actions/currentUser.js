@@ -30,7 +30,7 @@ export const login = credentials => {
                 alert(response.error)
             } else {
                 //action creator to get {type: 'SET_CURRENT_USER', user: user}
-                dispatch(setCurrentUser(response.data))
+                dispatch(setCurrentUser(response))
             }
         })
         .catch(console.log)
@@ -53,7 +53,7 @@ export const getCurrentUser = () => {
             if (response.error) {
                 alert(response.error)
             } else {
-                dispatch(setCurrentUser(response.data))
+                dispatch(setCurrentUser(response))
             }
         })
         .catch(console.log)
