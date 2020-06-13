@@ -10,14 +10,53 @@ export const setCurrentUser = user => {
 //async action creators 
 
 //request to backend to login
+// credentials the username and password entered in from Login.js components
 export const login = credentials => {
+    console.log(credentials)
+    //get dispatch from redux
     return dispatch => {
         return fetch('http://localhost:3000/api/v1/login', {
+            credentials: 'include',
             method: "POST", 
             headers: {
-                'Content-Type': 'applicaton/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(credentials)
         })
+        
+        .then(response => response.json())
+        // set current user with response back
+        .then(user => {
+            if (user.error) {
+                alert(user.error)
+            } else {
+                //action creator to get {type: 'SET_CURRENT_USER', user: user}
+                dispatch(setCurrentUser(user))
+            }
+        })
+        .catch(console.log)
+    }    
+}
+
+
+export const getCurrentUser = () => {
+    return dispatch => {
+        return fetch('http://localhost:3000/api/v1/get_current_user', {
+            credentials: 'include',
+            method: "GET", 
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        .then(response => response.json())
+        // set current user with response back
+        .then(user => {
+            if (user.error) {
+                alert(user.error)
+            } else {
+                dispatch(setCurrentUser(user))
+            }
+        })
+        .catch(console.log)
     }    
 }
