@@ -23,15 +23,14 @@ export const login = credentials => {
             },
             body: JSON.stringify(credentials)
         })
-        
         .then(response => response.json())
         // set current user with response back
-        .then(user => {
-            if (user.error) {
-                alert(user.error)
+        .then(response => {
+            if (response.error) {
+                alert(response.error)
             } else {
                 //action creator to get {type: 'SET_CURRENT_USER', user: user}
-                dispatch(setCurrentUser(user))
+                dispatch(setCurrentUser(response.data))
             }
         })
         .catch(console.log)
@@ -50,11 +49,11 @@ export const getCurrentUser = () => {
         })
         .then(response => response.json())
         // set current user with response back
-        .then(user => {
-            if (user.error) {
-                alert(user.error)
+        .then(response => {
+            if (response.error) {
+                alert(response.error)
             } else {
-                dispatch(setCurrentUser(user))
+                dispatch(setCurrentUser(response.data))
             }
         })
         .catch(console.log)

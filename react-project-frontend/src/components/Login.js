@@ -4,7 +4,7 @@ import { updateLoginForm } from '../actions/loginForm.js'
 import { login } from '../actions/currentUser.js'
 
 //loginForm has name and password in it
-const Login = ({ loginFormData, updateLoginForm }) => {
+const Login = ({ loginFormData, updateLoginForm, login }) => {
     //using same handler for username and password changes
     const handleChange = event => {
         // use event to dynamically grab name and value from event.target
