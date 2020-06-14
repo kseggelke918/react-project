@@ -12,4 +12,4 @@ const Logout = ({ logout }) => {
     )
 }
 
-export default connect(null, { updateLoginForm, logout })(Logout)
+export default connect(null, { logout })(Logout)
