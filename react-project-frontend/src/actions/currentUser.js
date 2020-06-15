@@ -12,7 +12,6 @@ export const setCurrentUser = user => {
 //request to backend to login
 // credentials the username and password entered in from Login.js components
 export const login = credentials => {
-    console.log(credentials)
     //get dispatch from redux
     return dispatch => {
         return fetch('http://localhost:3000/api/v1/login', {

@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import Login from './Login.js'
 import Logout from './Logout.js'
 
-const NavBar = ({ currentUser }) => {
+const NavBar = ({ currentUser, loggedIn }) => {
     return (
         <div className="nav">
-            {currentUser ? <h3>Welcome, {currentUser.name}!</h3> : <h3>Please login</h3>}
+            {loggedIn ? <h3>Welcome, {currentUser.data.attributes.name}!</h3> : <h3>Please login</h3>}
             {currentUser ? <Logout /> : <Login />}
 
         </div>
@@ -17,7 +17,8 @@ const NavBar = ({ currentUser }) => {
 //gives current user prop
 const mapStateToProps = ({ currentUser }) => {
     return {
-      currentUser
+      currentUser,
+      loggedIn: !!currentUser
     }
   }
 
