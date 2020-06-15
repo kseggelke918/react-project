@@ -3,6 +3,9 @@ import './App.css';
 import { connect } from "react-redux";
 import { getCurrentUser } from './actions/currentUser.js'
 import NavBar from './components/NavBar.js'
+import MainContainer from './components/MainContainer.js'
+import Footer from './components/Footer.js'
+
 
 class App extends React.Component {
 
@@ -12,11 +15,11 @@ class App extends React.Component {
 
   render() {
     return (
-      //need this because App is a class
+      <div className="App"> 
         <NavBar />
-        // <MainContainer />
-        // <Footer />
-
+        <MainContainer />
+        <Footer />
+      </div>  
     )
   }
 }
