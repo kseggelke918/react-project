@@ -2,8 +2,12 @@ class Api::V1::AccountsController < ApplicationController
     before_action :set_user
 
     def index 
-        accounts = @user.accounts 
-        render json: AccountSerializer.new(accounts)
+        if logged_in?   
+            accounts = @user.accounts 
+            render json: AccountSerializer.new(accounts)
+        else 
+            render json: {error: "You must log in to view accounts"}
+        end 
     end 
 
     def create 
