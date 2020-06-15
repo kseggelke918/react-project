@@ -1,4 +1,4 @@
-
+import { resetLoginForm } from './loginForm.js'
 // sync action creators - return plain js objects
 export const setCurrentUser = user => {
     return {
@@ -22,7 +22,7 @@ export const login = credentials => {
             },
             body: JSON.stringify(credentials)
         })
-        .then(response => response.json())
+        .then(r => r.json())
         // set current user with response back
         .then(response => {
             if (response.error) {
@@ -30,6 +30,7 @@ export const login = credentials => {
             } else {
                 //action creator to get {type: 'SET_CURRENT_USER', user: user}
                 dispatch(setCurrentUser(response))
+                dispatch(resetLoginForm())
             }
         })
         .catch(console.log)
@@ -65,7 +66,7 @@ export const getCurrentUser = () => {
                 'Content-Type': 'application/json'
             },
         })
-        .then(response => response.json())
+        .then(r => r.json())
         // set current user with response back
         .then(response => {
             if (response.error) {
