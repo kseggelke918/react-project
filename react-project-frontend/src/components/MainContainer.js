@@ -1,9 +1,10 @@
 import React from 'react'
+import MyAccounts from './MyAccounts.js'
 
 const MainContainer = () => {
     return (
         <div className="MainContainer">
-            This is the main container which will contain the accounts
+            <MyAccounts />
         </div>
     )
 }
