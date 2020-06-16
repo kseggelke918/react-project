@@ -1,4 +1,5 @@
 import { resetLoginForm } from './loginForm.js'
+import { getMyAccounts } from './myAccounts.js'
 // sync action creators - return plain js objects
 export const setCurrentUser = user => {
     return {
@@ -30,6 +31,7 @@ export const login = credentials => {
             } else {
                 //action creator to get {type: 'SET_CURRENT_USER', user: user}
                 dispatch(setCurrentUser(response))
+                dispatch(getMyAccounts(response))
                 dispatch(resetLoginForm())
             }
         })
@@ -72,7 +74,9 @@ export const getCurrentUser = () => {
             if (response.error) {
                 alert(response.error)
             } else {
+                
                 dispatch(setCurrentUser(response))
+                dispatch(getMyAccounts(response))
             }
         })
         .catch(console.log)
