@@ -1,17 +1,16 @@
 //sync actions
 
-export const setMyAccounts = user => {
+export const setMyAccounts = (accounts) => {
+    console.log(accounts)
     return {
         type: "SET_MY_TRIPS",
-        accounts: user.accounts 
+        accounts 
     }
 }
 
 // async actions
 
 export const getMyAccounts = (user) => {
-    console.log(user.data.id)
-
     return dispatch => {
         return fetch(`http://localhost:3000/api/v1/users/${user.data.id}/accounts`, {
             credentials: 'include', 
