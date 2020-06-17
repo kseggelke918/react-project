@@ -8,6 +8,12 @@ export const setCurrentUser = user => {
     }
 }
 
+export const clearCurrentUser = () => {
+    return {
+        type: 'CLEAR_CURRENT_USER'
+    }
+}
+
 //async action creators 
 
 //request to backend to login
@@ -40,7 +46,7 @@ export const login = credentials => {
 }
 
 // clear session on backend
-export const logout = () => {
+export const logout = (event) => {
     //return an action creator/function (w/ dispatch as arg)
     return (dispatch) => {
         //log out user on front end before fetch
@@ -49,12 +55,6 @@ export const logout = () => {
            credientials: 'include', 
            method: 'DELETE' 
         })
-    }
-}
-
-export const clearCurrentUser = () => {
-    return {
-        type: 'CLEAR_CURRENT_USER'
     }
 }
 
