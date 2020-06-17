@@ -74,7 +74,6 @@ export const getCurrentUser = () => {
             if (response.error) {
                 alert(response.error)
             } else {
-                
                 dispatch(setCurrentUser(response))
                 dispatch(getMyAccounts(response))
             }

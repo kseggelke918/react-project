@@ -1,7 +1,6 @@
 //sync actions
 
 export const setMyAccounts = (accounts) => {
-    console.log(accounts)
     return {
         type: "SET_MY_ACCOUNTS",
         accounts 
@@ -24,7 +23,7 @@ export const getMyAccounts = (user) => {
             if (response.error) {
                 alert(response.error)
             } else {
-                dispatch(setMyAccounts(response))
+                dispatch(setMyAccounts(response.data))
             }
         })
     }
