@@ -4,10 +4,11 @@ import { connect } from 'react-redux'
 
 // responsible for showing individual account 
 const displayAccounts = (props) => {
-    console.log(props.accounts)
+
     const accountCards = props.accounts.map(a => <AccountCard account={a} key={a.id} />)
-    return accountCards
-    // return "this is the account"
+    return (
+        accountCards.length > 0 ? accountCards : "no accounts to display"
+    )
 }
 
 //get array of myAccounts from state of the store
