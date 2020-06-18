@@ -1,5 +1,5 @@
 const initialState = {
-    acct_tpe: "", 
+    acct_type: "", 
     acct_number: "", 
     balance: ""
 }

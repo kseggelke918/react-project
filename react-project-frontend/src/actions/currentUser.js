@@ -75,9 +75,6 @@ export const signup = (credentials, history) => {
     }    
 }
 
-
-
-
 // clear session on backend
 export const logout = (event) => {
     //return an action creator/function (w/ dispatch as arg)
