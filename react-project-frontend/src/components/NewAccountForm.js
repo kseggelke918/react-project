@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { updateNewAccountForm } from '../actions/newAccountForm.js'
+// this is importing the action creator that will be passed to redux connect function so it can be used as mapDispatchToProps
 
-const NewAccountForm = ({accountType, balance, updateNewAccountForm, history}) => {
+const NewAccountForm = ({acct_type, balance, updateNewAccountForm, history}) => {
     
     const handleChange = (event) => {
         //grab name and value from event.target
@@ -18,7 +19,7 @@ const NewAccountForm = ({accountType, balance, updateNewAccountForm, history}) =
 
     return (
     <form onSubmit={handleSubmit}>
-        <input placeholder="account type" name="accountType" value={accountType} onChange={handleChange} />
+        <input placeholder="account type" name="acct_type" value={acct_type} onChange={handleChange} />
         <input placeholder="balance" name="balance" value={balance} onChange={handleChange} />
         <input type="submit" value="Open Account"/>
     </form>
@@ -27,7 +28,7 @@ const NewAccountForm = ({accountType, balance, updateNewAccountForm, history}) =
 
 const mapStateToProps = state => {
     return {
-        accountType: state.acct_type, 
+        acct_type: state.acct_type, 
         balance: state.balance
     }
 }
