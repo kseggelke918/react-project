@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getCurrentUser } from './actions/currentUser.js'
 import NavBar from './components/NavBar.js'
 import Login from './components/Login.js'
+import Home from './components/Home.js'
 import Signup from './components/Signup.js'
 import MyAccounts from './components/MyAccounts'
 import MainContainer from './components/MainContainer.js'
@@ -18,12 +19,13 @@ class App extends React.Component {
   }
 
   render() {
+    const { loggedIn } = this.props
     return (
       <Router>
         <div className="App"> 
           <NavBar />
-          <MainContainer />
-          <Route exact path='/signup' component={Signup} />
+            <Route exact path='/' render={() => loggedIn ? <MyAccounts /> : <Home />} />
+            <Route exact path='/signup' component={Signup} />
             <Route exact path='/login' component={Login} />
             <Route exact path= 'my-accounts' component={MyAccounts}/>  
           <Footer />
@@ -33,8 +35,12 @@ class App extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return ({
+    loggedIn: !!state.currentUser
+  })
+}
 
 
 
-
-export default connect(null, { getCurrentUser }) (App);
+export default connect(mapStateToProps, { getCurrentUser }) (App);
