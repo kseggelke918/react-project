@@ -8,7 +8,8 @@ const NavBar = ({ currentUser, loggedIn }) => {
     return (
         <div className="NavBar">
           <NavLink exact activeClass to="/accounts/new">Open Accounts   |</NavLink>
-          <NavLink exact activeClass to="/accouts">  View Accounts  </NavLink>
+          <NavLink exact activeClass to="/accouts">   View Accounts   |</NavLink>
+          <NavLink exact activeClass to="/">   Home</NavLink>
           <br></br>
           <br></br>
           {currentUser ? <Logout /> : ""} 
