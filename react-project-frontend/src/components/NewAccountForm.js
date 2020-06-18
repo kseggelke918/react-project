@@ -2,20 +2,24 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { updateNewAccountForm } from '../actions/newAccountForm.js'
 
-const NewAccountForm = () => {
+const NewAccountForm = ({accountType, balance, updateNewAccountForm, history}) => {
     
     const handleChange = (event) => {
-        event.preventDefault()
         //grab name and value from event.target
         const { name, value } = event.target
         //update newAccountForm using action creator
         updateNewAccountForm(name, value)
     }
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // handleSubmit(formData)
+    }
+
     return (
-    <form>
-        <input placeholder="account type" name="acctType" value={""} onChange={handleChange} />
-        <input placeholder="balance" name="balance" value={""} onChange={handleChange} />
+    <form onSubmit={handleSubmit}>
+        <input placeholder="account type" name="accountType" value={accountType} onChange={handleChange} />
+        <input placeholder="balance" name="balance" value={balance} onChange={handleChange} />
         <input type="submit" value="Open Account"/>
     </form>
     )
@@ -24,7 +28,6 @@ const NewAccountForm = () => {
 const mapStateToProps = state => {
     return {
         accountType: state.acct_type, 
-        accountNumber: state.acct_number,
         balance: state.balance
     }
 }
