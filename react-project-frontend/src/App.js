@@ -6,7 +6,8 @@ import NavBar from './components/NavBar.js'
 import Login from './components/Login.js'
 import Home from './components/Home.js'
 import Signup from './components/Signup.js'
-import MyAccounts from './components/MyAccounts'
+import MyAccounts from './components/MyAccounts.js'
+import NewTripForm from './components/NewTripForm.js'
 import MainContainer from './components/MainContainer.js'
 import Footer from './components/Footer.js'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
@@ -24,10 +25,11 @@ class App extends React.Component {
       <Router>
         <div className="App"> 
           <NavBar />
-            <Route exact path='/' render={() => loggedIn ? <MyAccounts /> : <Home />} />
-            <Route exact path='/signup' component={Signup} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path= 'my-accounts' component={MyAccounts}/>  
+          <Route exact path='/' render={() => loggedIn ? <MyAccounts /> : <Home />} />
+          <Route exact path='/signup' component={Signup} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path= 'my-accounts' component={MyAccounts}/>  
+          <Route exact path='/trips/new' component={NewTripForm} />
           <Footer />
         </div>  
       </Router>
