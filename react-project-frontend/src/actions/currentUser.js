@@ -1,6 +1,6 @@
 import { resetLoginForm } from './loginForm.js'
 import { resetSignupForm } from './signupForm.js'
-import { getMyAccounts } from './myAccounts.js'
+import { getMyAccounts, clearTrips } from './myAccounts.js'
 // sync action creators - return plain js objects
 export const setCurrentUser = user => {
     return {
@@ -76,11 +76,12 @@ export const signup = (credentials, history) => {
 }
 
 // clear session on backend
-export const logout = (event) => {
+export const logout = () => {
     //return an action creator/function (w/ dispatch as arg)
     return (dispatch) => {
         //log out user on front end before fetch
         dispatch(clearCurrentUser())
+        dispatch(clearTrips())
         return fetch('http://localhost3000/api/v1/logout', {
            credientials: 'include', 
            method: 'DELETE' 

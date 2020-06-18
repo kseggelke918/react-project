@@ -1,4 +1,4 @@
-//sync actions
+//sync action creators
 
 export const setMyAccounts = (accounts) => {
     return {
@@ -7,7 +7,13 @@ export const setMyAccounts = (accounts) => {
     }
 }
 
-// async actions
+export const clearTrips = () => {
+    return {
+        type: 'CLEAR_TRIPS'
+    }
+}
+
+// async action creators
 
 export const getMyAccounts = (user) => {
     return dispatch => {
