@@ -8,3 +8,9 @@ export const updateNewAccountForm = (name, value) => {
         //action.formData will contain a name and a value
     }
 }
+
+export const resetNewAccountForm = () => {
+    return {
+        type: "RESET_NEW_ACCOUNT_FORM", 
+    }
+}

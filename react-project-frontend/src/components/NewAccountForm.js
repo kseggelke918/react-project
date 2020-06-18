@@ -15,8 +15,7 @@ const NewAccountForm = ({acct_type, balance, user_id, updateNewAccountForm, crea
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        createAccount({ acct_type, balance, user_id })
-        history.push('/')
+        createAccount({ acct_type, balance, user_id }, history)
     }
 
     return (

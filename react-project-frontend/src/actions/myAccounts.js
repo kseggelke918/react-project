@@ -1,3 +1,5 @@
+import { resetNewAccountForm } from './newAccountForm'
+
 //sync action creators
 
 export const setMyAccounts = (accounts) => {
@@ -43,7 +45,7 @@ export const getMyAccounts = (user) => {
 }
 
 // this will return a function that takes dispatch
-export const createAccount = accountData => {
+export const createAccount = (accountData, history) => {
     // console.log("this is accountData in createAccount", accountData)
     // console.log("this is the user_id in createAccont", accountData.user_id.data.id )
     const userId = accountData.user_id.data.id
@@ -59,9 +61,17 @@ export const createAccount = accountData => {
         })
         .then( r => r.json())
         .then(response => {
-            // re-route 
+            if (response.error) {
+                alert(response.error)
+            } else {
+                // add acct to store
+                dispatch(addAccount(response.data))
+                //reset form after submission
+                dispatch(resetNewAccountForm())
+                // re-route 
+                history.push('/accounts')
+            }
             
-            // add acct to store
         })
         .then(console.log)
         .catch(console.log)
