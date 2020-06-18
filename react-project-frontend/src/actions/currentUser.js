@@ -19,7 +19,7 @@ export const clearCurrentUser = () => {
 
 //request to backend to login
 // credentials the username and password entered in from Login.js components
-export const login = credentials => {
+export const login = (credentials, history) => {
     //get dispatch from redux
     return dispatch => {
         return fetch('http://localhost:3000/api/v1/login', {
@@ -40,6 +40,7 @@ export const login = credentials => {
                 dispatch(setCurrentUser(response))
                 dispatch(getMyAccounts(response))
                 dispatch(resetLoginForm())
+                history.push('/')
             }
         })
         .catch(console.log)
