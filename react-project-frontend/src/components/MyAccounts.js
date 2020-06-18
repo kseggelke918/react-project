@@ -14,7 +14,6 @@ const displayAccounts = (props) => {
 //get array of myAccounts from state of the store
 //mapStateToProps returns an object with whatever keys we want for props
 const mapStateToProps = state => {
-    console.log(state.myAccounts)
     return {
         accounts: state.myAccounts
     }

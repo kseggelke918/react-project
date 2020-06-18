@@ -44,19 +44,25 @@ export const getMyAccounts = (user) => {
 
 // this will return a function that takes dispatch
 export const createAccount = accountData => {
-    console.log(accountData)
-    // const user = state.currentUser.id
+    // console.log("this is accountData in createAccount", accountData)
+    // console.log("this is the user_id in createAccont", accountData.user_id.data.id )
+    const userId = accountData.user_id.data.id
     return dispatch => {
         
-        return fetch(`http://localhost:3000/api/v1/users/${accountData.user_id}/accounts`, {
+        return fetch(`http://localhost:3000/api/v1/users/${userId}/accounts`, {
         credentials: 'include',    
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         }, 
-        body: accountData
+        body: JSON.stringify(accountData)
         })
         .then( r => r.json())
+        .then(response => {
+            // re-route 
+            
+            // add acct to store
+        })
         .then(console.log)
         .catch(console.log)
     }

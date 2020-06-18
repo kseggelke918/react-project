@@ -3,7 +3,10 @@ class Account < ApplicationRecord
     belongs_to :user 
     validates :balance, presence: true 
 
-
+    def initialize(args = {})
+        args[:acct_number] ||= account_number_generator
+        super
+    end 
 
     def adjust_balance(transaction)
         if transaction.debit_credit == 'credit'
@@ -18,7 +21,7 @@ class Account < ApplicationRecord
     def account_number_generator
         acct_num = rand(111111..999999)
         
-        while Account.exists?(account_number: acct_num)
+        while Account.exists?(acct_number: acct_num)
           acct_num = rand(111111..999999) 
         end 
         
