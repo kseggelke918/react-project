@@ -1,7 +1,8 @@
 const initialState = {
     acct_type: "", 
     acct_number: "", 
-    balance: ""
+    balance: "", 
+    user_id: ""
 }
 
 export default (state=initialState, action) => {

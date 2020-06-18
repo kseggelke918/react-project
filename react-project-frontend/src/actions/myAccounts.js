@@ -13,7 +13,14 @@ export const clearTrips = () => {
     }
 }
 
-// async action creators
+export const addAccount = account => {
+    return {
+        type: 'ADD_ACCOUNT',
+        account
+    }
+}
+
+// async action creators - have to wait for something to happen to update store
 
 export const getMyAccounts = (user) => {
     return dispatch => {
@@ -32,5 +39,25 @@ export const getMyAccounts = (user) => {
                 dispatch(setMyAccounts(response.data))
             }
         })
+    }
+}
+
+// this will return a function that takes dispatch
+export const createAccount = accountData => {
+    console.log(accountData)
+    // const user = state.currentUser.id
+    return dispatch => {
+        
+        return fetch(`http://localhost:3000/api/v1/users/${accountData.user_id}/accounts`, {
+        credentials: 'include',    
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }, 
+        body: accountData
+        })
+        .then( r => r.json())
+        .then(console.log)
+        .catch(console.log)
     }
 }
