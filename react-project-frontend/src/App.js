@@ -32,10 +32,10 @@ class App extends React.Component {
           Once it finds the first route that matches the path, it will not look for any other matches.  Also 
           allows for nested routes to work properly, which is something that <Router /> will not be able to handle */}
           <Switch>
-            <Route exact path='/' render={() => loggedIn ? <MyAccounts /> : <Home />} />
+            {/* <Route exact path='/' render={() => loggedIn ? <MyAccounts /> : <Home />} /> */}
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/login' component={Login} />
-            <Route exact path= 'my-accounts' component={MyAccounts}/>  
+            <Route exact path= '/accounts' component={MyAccounts}/>  
             <Route exact path='/accounts/new' component={NewAccountForm} />
             // Account card needs props to render 
             <Route exact path='/accounts/:id' render={props => {
