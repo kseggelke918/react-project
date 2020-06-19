@@ -69,7 +69,7 @@ export const createAccount = (accountData, history) => {
                 //reset form after submission
                 dispatch(resetNewAccountForm())
                 // re-route 
-                history.push('/accounts')
+                history.push(`/accounts/${response.data.id}`)
             }
             
         })

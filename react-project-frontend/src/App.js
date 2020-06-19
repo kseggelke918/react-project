@@ -10,6 +10,7 @@ import MyAccounts from './components/MyAccounts.js'
 import NewAccountForm from './components/NewAccountForm.js'
 // import MainContainer from './components/MainContainer.js'
 import Footer from './components/Footer.js'
+import AccountCard from './components/AccountCard.js'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 
@@ -20,11 +21,11 @@ class App extends React.Component {
   }
 
   render() {
-    const { loggedIn } = this.props
+    const { loggedIn, myAccounts } = this.props
     return (
       <Router>
         <div className="App"> 
-          { loggedIn ? <NavBar /> : null}
+          { loggedIn ? <NavBar /> : <Home />}
           {/* The <Switch /> component will only render the first route that matches/includes the path. 
           Once it finds the first route that matches the path, it will not look for any other matches.  Also 
           allows for nested routes to work properly, which is something that <Router /> will not be able to handle */}
@@ -34,6 +35,14 @@ class App extends React.Component {
             <Route exact path='/login' component={Login} />
             <Route exact path= 'my-accounts' component={MyAccounts}/>  
             <Route exact path='/accounts/new' component={NewAccountForm} />
+            // Account card needs props to render 
+            <Route exact path='/accounts/:id' render={props => {
+              console.log("this is myAccounts", myAccounts)
+              const account = myAccounts.find(account => account.id === props.match.params.id)
+              console.log("this is account in route", account)
+              return <AccountCard account={account} {...props} />
+            }
+          } />
           </Switch>
           <Footer />
         </div>  
@@ -43,8 +52,10 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log("this is state", state)
   return ({
-    loggedIn: !!state.currentUser
+    loggedIn: !!state.currentUser, 
+    myAccounts: state.myAccounts
   })
 }
 
