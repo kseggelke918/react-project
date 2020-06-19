@@ -4,7 +4,8 @@ const AccountCard = ({ account }) => {
     console.log("this is account in account card", account)
     return (
         <div>
-            <p>{account.attributes.acct_number} - {account.attributes.acct_type} - ${account.attributes.balance}</p>
+            <h5>Account Number: {account.attributes.acct_number}</h5>
+            <h5>Balance: ${account.attributes.balance}</h5>
         </div>
         
     )
