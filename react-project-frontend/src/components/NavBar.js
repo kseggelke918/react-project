@@ -13,7 +13,7 @@ const NavBar = ({ currentUser, loggedIn }) => {
           <br></br>
           <br></br>
           {currentUser ? <Logout /> : ""} 
-          {loggedIn ? <h3>Welcome, {currentUser.data.attributes.name}!</h3> : ""}
+          {loggedIn ? <h3 class="welcome">Welcome, {currentUser.data.attributes.name}!</h3> : ""}
             
 
         </div>

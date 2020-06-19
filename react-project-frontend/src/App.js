@@ -10,6 +10,7 @@ import MyAccounts from './components/MyAccounts.js'
 import NewAccountForm from './components/NewAccountForm.js'
 // import MainContainer from './components/MainContainer.js'
 import Footer from './components/Footer.js'
+import Header from './components/Header.js'
 import AccountCard from './components/AccountCard.js'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
@@ -25,6 +26,7 @@ class App extends React.Component {
     return (
       <Router>
         <div className="App"> 
+        <Header />
           { loggedIn ? <NavBar /> : <Home />}
           {/* The <Switch /> component will only render the first route that matches/includes the path. 
           Once it finds the first route that matches the path, it will not look for any other matches.  Also 

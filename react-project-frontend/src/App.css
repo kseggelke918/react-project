@@ -27,5 +27,13 @@
 }
 
 a.active { 
-  color: orange;
+  color: blue;
+}
+
+.header {
+  color: midnightblue; 
+}
+
+.welcome {
+  color: darkblue
 }

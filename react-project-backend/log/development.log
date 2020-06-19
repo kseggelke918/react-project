@@ -14574,3 +14574,378 @@ Processing by Api::V1::AccountsController#create as */*
 Completed 200 OK in 17ms (Views: 2.3ms | ActiveRecord: 2.9ms | Allocations: 5009)
 
 
+Started GET "/api/v1/get_current_user" for ::1 at 2020-06-19 11:54:39 -0600
+Processing by Api::V1::SessionsController#get_current_user as */*
+  Parameters: {"session"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "accounts"."id" FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "transactions"."id" FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+Completed 200 OK in 60ms (Views: 54.6ms | ActiveRecord: 1.2ms | Allocations: 5753)
+
+
+Started GET "/api/v1/users/6/accounts" for ::1 at 2020-06-19 11:54:39 -0600
+Processing by Api::V1::AccountsController#index as */*
+  Parameters: {"user_id"=>"6", "account"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:35:in `set_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mAccount Load (0.4ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 20]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 21]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+Completed 200 OK in 25ms (Views: 15.6ms | ActiveRecord: 1.3ms | Allocations: 4443)
+
+
+Started GET "/api/v1/get_current_user" for ::1 at 2020-06-19 11:55:44 -0600
+Processing by Api::V1::SessionsController#get_current_user as */*
+  Parameters: {"session"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "accounts"."id" FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "transactions"."id" FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+Completed 200 OK in 24ms (Views: 18.1ms | ActiveRecord: 1.3ms | Allocations: 5751)
+
+
+Started GET "/api/v1/users/6/accounts" for ::1 at 2020-06-19 11:55:44 -0600
+Processing by Api::V1::AccountsController#index as */*
+  Parameters: {"user_id"=>"6", "account"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:35:in `set_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 20]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 21]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+Completed 200 OK in 98ms (Views: 92.5ms | ActiveRecord: 1.2ms | Allocations: 4435)
+
+
+Started GET "/api/v1/get_current_user" for ::1 at 2020-06-19 11:56:30 -0600
+Processing by Api::V1::SessionsController#get_current_user as */*
+  Parameters: {"session"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "accounts"."id" FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "transactions"."id" FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+Completed 200 OK in 24ms (Views: 17.6ms | ActiveRecord: 1.3ms | Allocations: 5749)
+
+
+Started GET "/api/v1/users/6/accounts" for ::1 at 2020-06-19 11:56:30 -0600
+Processing by Api::V1::AccountsController#index as */*
+  Parameters: {"user_id"=>"6", "account"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:35:in `set_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 20]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 21]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+Completed 200 OK in 41ms (Views: 34.6ms | ActiveRecord: 1.2ms | Allocations: 4443)
+
+
+Started GET "/api/v1/get_current_user" for ::1 at 2020-06-19 11:56:36 -0600
+Processing by Api::V1::SessionsController#get_current_user as */*
+  Parameters: {"session"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "accounts"."id" FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "transactions"."id" FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+Completed 200 OK in 27ms (Views: 21.2ms | ActiveRecord: 1.3ms | Allocations: 5754)
+
+
+Started GET "/api/v1/users/6/accounts" for ::1 at 2020-06-19 11:56:36 -0600
+Processing by Api::V1::AccountsController#index as */*
+  Parameters: {"user_id"=>"6", "account"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:35:in `set_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mAccount Load (1.4ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 20]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 21]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+Completed 200 OK in 32ms (Views: 19.1ms | ActiveRecord: 2.4ms | Allocations: 4438)
+
+
+Started GET "/api/v1/get_current_user" for ::1 at 2020-06-19 11:57:40 -0600
+Processing by Api::V1::SessionsController#get_current_user as */*
+  Parameters: {"session"=>{}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "accounts"."id" FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "transactions"."id" FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+Completed 200 OK in 29ms (Views: 17.8ms | ActiveRecord: 2.0ms | Allocations: 5753)
+
+
+Started GET "/api/v1/users/6/accounts" for ::1 at 2020-06-19 11:57:40 -0600
+Processing by Api::V1::AccountsController#index as */*
+  Parameters: {"user_id"=>"6", "account"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:35:in `set_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mAccount Load (0.6ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 20]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 21]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+Completed 200 OK in 18ms (Views: 11.7ms | ActiveRecord: 1.6ms | Allocations: 4445)
+
+
+Started GET "/api/v1/get_current_user" for ::1 at 2020-06-19 11:58:32 -0600
+Processing by Api::V1::SessionsController#get_current_user as */*
+  Parameters: {"session"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "accounts"."id" FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "transactions"."id" FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+Completed 200 OK in 26ms (Views: 18.7ms | ActiveRecord: 2.9ms | Allocations: 5753)
+
+
+Started GET "/api/v1/users/6/accounts" for ::1 at 2020-06-19 11:58:32 -0600
+Processing by Api::V1::AccountsController#index as */*
+  Parameters: {"user_id"=>"6", "account"=>{}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:35:in `set_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mAccount Load (0.4ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 20]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 21]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+Completed 200 OK in 22ms (Views: 15.3ms | ActiveRecord: 1.8ms | Allocations: 4440)
+
+
+Started GET "/api/v1/get_current_user" for ::1 at 2020-06-19 12:03:46 -0600
+Processing by Api::V1::SessionsController#get_current_user as */*
+  Parameters: {"session"=>{}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "accounts"."id" FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "transactions"."id" FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mAccount Load (0.7ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+Completed 200 OK in 40ms (Views: 26.1ms | ActiveRecord: 2.1ms | Allocations: 5753)
+
+
+Started GET "/api/v1/users/6/accounts" for ::1 at 2020-06-19 12:03:46 -0600
+Processing by Api::V1::AccountsController#index as */*
+  Parameters: {"user_id"=>"6", "account"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:35:in `set_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 20]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 21]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+Completed 200 OK in 20ms (Views: 12.1ms | ActiveRecord: 1.4ms | Allocations: 4442)
+
+
+Started GET "/api/v1/get_current_user" for ::1 at 2020-06-19 12:03:56 -0600
+Processing by Api::V1::SessionsController#get_current_user as */*
+  Parameters: {"session"=>{}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "accounts"."id" FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "transactions"."id" FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mAccount Load (0.7ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+Completed 200 OK in 63ms (Views: 55.5ms | ActiveRecord: 2.3ms | Allocations: 5752)
+
+
+Started GET "/api/v1/users/6/accounts" for ::1 at 2020-06-19 12:03:57 -0600
+Processing by Api::V1::AccountsController#index as */*
+  Parameters: {"user_id"=>"6", "account"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:35:in `set_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 20]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 21]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+Completed 200 OK in 15ms (Views: 9.3ms | ActiveRecord: 1.4ms | Allocations: 4439)
+
+
+Started GET "/api/v1/get_current_user" for ::1 at 2020-06-19 12:04:50 -0600
+Processing by Api::V1::SessionsController#get_current_user as */*
+  Parameters: {"session"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "accounts"."id" FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "transactions"."id" FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+Completed 200 OK in 71ms (Views: 65.2ms | ActiveRecord: 1.4ms | Allocations: 5756)
+
+
+Started GET "/api/v1/users/6/accounts" for ::1 at 2020-06-19 12:04:50 -0600
+Processing by Api::V1::AccountsController#index as */*
+  Parameters: {"user_id"=>"6", "account"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:35:in `set_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 20]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 21]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+Completed 200 OK in 21ms (Views: 12.9ms | ActiveRecord: 1.4ms | Allocations: 4440)
+
+
+Started GET "/api/v1/get_current_user" for ::1 at 2020-06-19 12:05:46 -0600
+Processing by Api::V1::SessionsController#get_current_user as */*
+  Parameters: {"session"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "accounts"."id" FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "transactions"."id" FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+Completed 200 OK in 28ms (Views: 21.9ms | ActiveRecord: 1.2ms | Allocations: 5754)
+
+
+Started GET "/api/v1/users/6/accounts" for ::1 at 2020-06-19 12:05:47 -0600
+Processing by Api::V1::AccountsController#index as */*
+  Parameters: {"user_id"=>"6", "account"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:35:in `set_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 20]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 21]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+Completed 200 OK in 21ms (Views: 15.6ms | ActiveRecord: 1.2ms | Allocations: 4437)
+
+
+Started GET "/api/v1/get_current_user" for ::1 at 2020-06-19 12:20:27 -0600
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::SessionsController#get_current_user as */*
+  Parameters: {"session"=>{}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "accounts"."id" FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "transactions"."id" FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mAccount Load (1.0ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+  [1m[36mTransaction Load (0.9ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:15:in `get_current_user'
+Completed 200 OK in 88ms (Views: 51.1ms | ActiveRecord: 5.1ms | Allocations: 5827)
+
+
+Started GET "/api/v1/users/6/accounts" for ::1 at 2020-06-19 12:20:27 -0600
+Processing by Api::V1::AccountsController#index as */*
+  Parameters: {"user_id"=>"6", "account"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:35:in `set_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mAccount Load (1.0ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 20]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 21]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+Completed 200 OK in 73ms (Views: 60.4ms | ActiveRecord: 2.2ms | Allocations: 4457)
+
+
