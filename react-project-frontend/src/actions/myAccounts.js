@@ -46,8 +46,6 @@ export const getMyAccounts = (user) => {
 
 // this will return a function that takes dispatch
 export const createAccount = (accountData, history) => {
-    // console.log("this is accountData in createAccount", accountData)
-    // console.log("this is the user_id in createAccont", accountData.user_id.data.id )
     const userId = accountData.user_id.data.id
     return dispatch => {
         

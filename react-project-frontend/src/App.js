@@ -32,7 +32,6 @@ class App extends React.Component {
           Once it finds the first route that matches the path, it will not look for any other matches.  Also 
           allows for nested routes to work properly, which is something that <Router /> will not be able to handle */}
           <Switch>
-            {/* <Route exact path='/' render={() => loggedIn ? <MyAccounts /> : <Home />} /> */}
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/login' component={Login} />
             <Route exact path= '/accounts' component={MyAccounts}/>  
@@ -54,7 +53,6 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log("this is state", state)
   return ({
     loggedIn: !!state.currentUser, 
     myAccounts: state.myAccounts
