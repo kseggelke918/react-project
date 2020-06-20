@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { createAccount } from '../actions/myAccounts.js'
 import { updateNewAccountForm } from '../actions/newAccountForm.js'
-// import newAccountForm from '../reducers/newAccountForm.js'
 // this is importing the action creator that will be passed to redux connect function so it can be used as mapDispatchToProps
 
 const NewAccountForm = ({acct_type, balance, user_id, updateNewAccountForm, createAccount, history}) => {

@@ -38,9 +38,7 @@ class App extends React.Component {
             <Route exact path='/accounts/new' component={NewAccountForm} />
             // Account card needs props to render 
             <Route exact path='/accounts/:id' render={props => {
-              console.log("this is myAccounts", myAccounts)
               const account = myAccounts.find(account => account.id === props.match.params.id)
-              console.log("this is account in route", account)
               return <AccountCard account={account} {...props} />
             }
           } />

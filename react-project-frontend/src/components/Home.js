@@ -1,6 +1,5 @@
 import React from 'react'
-// import Login from './Login.js'
-// import Signup from './Signup.js'
+
 import { Link } from 'react-router-dom'
 
 const Home = () => (

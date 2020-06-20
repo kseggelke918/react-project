@@ -1,6 +1,7 @@
 import { resetLoginForm } from './loginForm.js'
 import { resetSignupForm } from './signupForm.js'
 import { getMyAccounts, clearTrips } from './myAccounts.js'
+
 // sync action creators - return plain js objects
 export const setCurrentUser = user => {
     return {
