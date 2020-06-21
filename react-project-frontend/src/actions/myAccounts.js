@@ -9,9 +9,9 @@ export const setMyAccounts = (accounts) => {
     }
 }
 
-export const clearTrips = () => {
+export const clearAccounts = () => {
     return {
-        type: 'CLEAR_TRIPS'
+        type: 'CLEAR_ACCOUNTS'
     }
 }
 

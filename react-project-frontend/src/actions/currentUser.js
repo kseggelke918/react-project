@@ -1,6 +1,6 @@
 import { resetLoginForm } from './loginForm.js'
 import { resetSignupForm } from './signupForm.js'
-import { getMyAccounts, clearTrips } from './myAccounts.js'
+import { getMyAccounts, clearAccounts } from './myAccounts.js'
 
 // sync action creators - return plain js objects
 export const setCurrentUser = user => {
@@ -82,7 +82,7 @@ export const logout = () => {
     return (dispatch) => {
         //log out user on front end before fetch
         dispatch(clearCurrentUser())
-        dispatch(clearTrips())
+        dispatch(clearAccounts())
         return fetch('http://localhost3000/api/v1/logout', {
            credientials: 'include', 
            method: 'DELETE' 
