@@ -16,6 +16,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 class App extends React.Component {
 
+  // as soon as the component mounts, we get the current user
   componentDidMount() {
     this.props.getCurrentUser()
   }
@@ -59,3 +60,6 @@ const mapStateToProps = state => {
 
 
 export default connect(mapStateToProps, { getCurrentUser }) (App);
+// automatically calls dispatch for us on the return value of getCurrentUser
+// dispatch updates store
+// essentially calling store.dispatch({action object}) - happening automatically with connect
