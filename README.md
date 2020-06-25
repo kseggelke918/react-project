@@ -1,24 +1,26 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome! This application is meant to simulate an online banking platform.
 
-Things you may want to cover:
+Installation
 
-* Ruby version
+In react-project-backend, execute: $ bundle install
+In react-project-frontend, execute: $ npm install 
 
-* System dependencies
+Usage
 
-* Configuration
+To use this application, execute: 'rails s' in react-project-backend and 'npm start' in react-project-frontend.
 
-* Database creation
+Walthrough
 
-* Database initialization
+Contributing
 
-* How to run the test suite
+Bug reports and pull requests welcome at https://github.com/kseggelke918/react-project. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
-* Services (job queues, cache servers, search engines, etc.)
+License
 
-* Deployment instructions
+The Application is available as open source under the terms of the MIT License
 
-* ...
+Code of Conduct
+
+Everyone interacting in the react-project project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the code of conduct.
