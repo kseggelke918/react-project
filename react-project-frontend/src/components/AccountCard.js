@@ -11,7 +11,7 @@ const AccountCard = ({ account }) => {
             <h5>Account Type: {account.attributes.acct_type}</h5>
             <h5>Balance: ${account.attributes.balance}</h5>
             <br></br>
-            <h5>Transactions: {transaction}</h5>
+            <h5>Transactions: {transaction.length > 0 ? transaction : "No Transactions to Display"}</h5>
 
 
         </div>
