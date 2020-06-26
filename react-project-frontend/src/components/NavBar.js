@@ -6,13 +6,13 @@ import Logout from './Logout.js'
 const NavBar = ({ currentUser, loggedIn }) => {
     return (
         <div className="NavBar">
-          <NavLink exact activeClass to="/accounts/new">Open Accounts   |</NavLink>
-          <NavLink exact activeClass to="/accounts">   View Accounts   |</NavLink>
-          <NavLink exact activeClass to="/">   Home</NavLink>
+          <NavLink exact to="/accounts/new">Open Accounts   |</NavLink>
+          <NavLink exact to="/accounts">   View Accounts   |</NavLink>
+          <NavLink exact to="/">   Home</NavLink>
           <br></br>
           <br></br>
           {currentUser ? <Logout /> : ""} 
-          {loggedIn ? <h3 class="welcome">Welcome, {currentUser.data.attributes.name}!</h3> : ""}
+          {loggedIn ? <h3 className="welcome">Welcome, {currentUser.data.attributes.name}!</h3> : ""}
             
 
         </div>
