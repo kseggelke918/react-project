@@ -3,9 +3,15 @@ import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import Logout from './Logout.js'
 
-const NavBar = ({ currentUser, loggedIn }) => {
-    return (
-        <div className="NavBar">
+
+class NavBar extends React.Component {
+    render() {
+      
+      const {currentUser, loggedIn} = this.props
+      return (
+      <div className="NavBar">
+          <p>Counter: {this.state.counter}</p>
+          <button onClick={this.handleClick}>Increment </button>
           <NavLink exact to="/accounts/new">Open Accounts   |</NavLink>
           <NavLink exact to="/accounts">   View Accounts   |</NavLink>
           <NavLink exact to="/">   Home</NavLink>
@@ -16,12 +22,11 @@ const NavBar = ({ currentUser, loggedIn }) => {
             
 
         </div>
-    )
-}
+      ) 
+    }
 
-//needs to know about current user so we can "welcome"
-//gives current user prop
-const mapStateToProps = ({ currentUser }) => {
+  }
+  const mapStateToProps = ({ currentUser }) => {
     return {
       currentUser,
       loggedIn: !!currentUser
