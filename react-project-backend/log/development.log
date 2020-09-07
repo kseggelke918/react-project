@@ -20552,3 +20552,13 @@ Processing by Api::V1::SessionsController#get_current_user as */*
 Completed 200 OK in 27ms (Views: 18.6ms | ActiveRecord: 3.0ms | Allocations: 6486)
 
 
+Started GET "/api/v1/get_current_user" for ::1 at 2020-09-07 14:48:50 -0600
+  [1m[35m (4.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::SessionsController#get_current_user as */*
+  Parameters: {"session"=>{}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 40ms (Views: 0.7ms | ActiveRecord: 1.4ms | Allocations: 4426)
+
+
