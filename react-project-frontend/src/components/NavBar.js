@@ -10,8 +10,6 @@ class NavBar extends React.Component {
       const {currentUser, loggedIn} = this.props
       return (
       <div className="NavBar">
-          <p>Counter: {this.state.counter}</p>
-          <button onClick={this.handleClick}>Increment </button>
           <NavLink exact to="/accounts/new">Open Accounts   |</NavLink>
           <NavLink exact to="/accounts">   View Accounts   |</NavLink>
           <NavLink exact to="/">   Home</NavLink>
