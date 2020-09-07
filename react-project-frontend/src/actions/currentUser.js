@@ -2,7 +2,6 @@ import { resetLoginForm } from './loginForm.js'
 import { resetSignupForm } from './signupForm.js'
 import { getMyAccounts, clearAccounts } from './myAccounts.js'
 
-// sync action creators - return plain js objects
 export const setCurrentUser = user => {
     return {
         type: "SET_CURRENT_USER",
@@ -16,12 +15,7 @@ export const clearCurrentUser = () => {
     }
 }
 
-//async action creators 
-
-//request to backend to login
-// credentials the username and password entered in from Login.js components
 export const login = (credentials, history) => {
-    //get dispatch from redux
     return dispatch => {
         return fetch('http://localhost:3000/api/v1/login', {
             credentials: 'include',
@@ -32,12 +26,10 @@ export const login = (credentials, history) => {
             body: JSON.stringify(credentials)
         })
         .then(r => r.json())
-        // set current user with response back
         .then(response => {
             if (response.error) {
                 alert(response.error)
             } else {
-                //action creator to get {type: 'SET_CURRENT_USER', user: user}
                 dispatch(setCurrentUser(response))
                 dispatch(getMyAccounts(response))
                 dispatch(resetLoginForm())
@@ -76,11 +68,9 @@ export const signup = (credentials, history) => {
     }    
 }
 
-// clear session on backend
+
 export const logout = () => {
-    //return an action creator/function (w/ dispatch as arg)
     return (dispatch) => {
-        //log out user on front end before fetch
         dispatch(clearCurrentUser())
         dispatch(clearAccounts())
         return fetch('http://localhost3000/api/v1/logout', {
@@ -101,7 +91,6 @@ export const getCurrentUser = () => {
             },
         })
         .then(r => r.json())
-        // set current user with response back
         .then(response => {
             if (response.error) {
                 alert(response.error)

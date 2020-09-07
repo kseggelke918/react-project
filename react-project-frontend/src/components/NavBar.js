@@ -17,8 +17,6 @@ class NavBar extends React.Component {
           <br></br>
           {currentUser ? <Logout /> : ""} 
           {loggedIn ? <h3 className="welcome">Welcome, {currentUser.data.attributes.name}!</h3> : ""}
-            
-
         </div>
       ) 
     }

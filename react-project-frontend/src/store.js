@@ -5,7 +5,6 @@ import myAccounts from './reducers/myAccounts.js'
 import signupForm from './reducers/signupForm.js'
 import newAccountForm from './reducers/newAccountForm.js'
 import thunk from 'redux-thunk'
-// thunk is only needed if you want to make requests to a backend or other api
 
 const reducer = combineReducers({
     currentUser: currentUser, 
@@ -18,6 +17,5 @@ const reducer = combineReducers({
   const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   
   const store = createStore(reducer, composeEnhancer(applyMiddleware(thunk)))
-  //console.log(store)
 
   export default store

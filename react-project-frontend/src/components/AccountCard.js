@@ -14,8 +14,6 @@ const AccountCard = ({ account }) => {
             <h5>Balance: ${account.attributes.balance}</h5>
             <br></br>
             <h5>Transactions: {transaction.length > 0 ? transaction : "No Transactions to Display"}</h5>
-
-
         </div>
         
     )
@@ -24,8 +22,7 @@ const AccountCard = ({ account }) => {
         return (
             <div>Looking for Account</div>
         )
-    }
-    
+    }   
 }
 
 export default AccountCard

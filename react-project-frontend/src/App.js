@@ -16,7 +16,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 class App extends React.Component {
 
-  // as soon as the component mounts, we get the current user
   componentDidMount() {
     this.props.getCurrentUser()
   }
@@ -30,9 +29,6 @@ class App extends React.Component {
         <div className="App"> 
         <Header />
           { loggedIn ? <NavBar /> : <Home />}
-          {/* The <Switch /> component will only render the first route that matches/includes the path. 
-          Once it finds the first route that matches the path, it will not look for any other matches.  Also 
-          allows for nested routes to work properly, which is something that <Router /> will not be able to handle */}
           <Switch>
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/login' component={Login} />
@@ -62,6 +58,3 @@ const mapStateToProps = state => {
 
 
 export default connect(mapStateToProps, { getCurrentUser }) (App);
-// automatically calls dispatch for us on the return value of getCurrentUser
-// dispatch updates store
-// essentially calling store.dispatch({action object}) - happening automatically with connect
