@@ -36,7 +36,6 @@ export const login = (credentials, history) => {
                 history.push('/')
             }
         })
-        .catch(console.log)
     }    
 }
 
@@ -64,7 +63,6 @@ export const signup = (credentials, history) => {
                 history.push('/')
             }
         })
-        .catch(console.log)
     }    
 }
 
@@ -99,6 +97,5 @@ export const getCurrentUser = () => {
                 dispatch(getMyAccounts(response))
             }
         })
-        .catch(console.log)
     }    
 }

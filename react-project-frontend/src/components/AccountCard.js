@@ -1,7 +1,6 @@
 import React from 'react'
 
 const AccountCard = ({ account }) => {
-    console.log("this is the account being passed into accountCard", account)
     if (account) {
         let transactions = account.attributes.transactions
         const transaction = transactions.map(t => (<p key={t.id}>{t.merchant} - ${t.amount} - {t.debit_credit}</p>))
@@ -18,7 +17,6 @@ const AccountCard = ({ account }) => {
         
     )
     } else {
-        console.log("account card not rendering yet")
         return (
             <div>Looking for Account</div>
         )

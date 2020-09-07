@@ -3,9 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 const displayAccounts = props => {
-    console.log("In MyAccounts componenet props is ", props)
     const myAccounts = props.accounts.map(a => (<p key={a.id}><Link to={`/accounts/${a.id}`}>{a.attributes.acct_number} - {a.attributes.acct_type}</Link></p>))
-    console.log("in myaccounts comp this is myAccounts variable", myAccounts)
     return (
         myAccounts.length > 0 ? myAccounts : "no accounts to display"
     )

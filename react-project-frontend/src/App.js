@@ -22,8 +22,6 @@ class App extends React.Component {
 
   render() {
     const { loggedIn, myAccounts } = this.props
-    console.log("app is being rendered")
-    console.log("these are props in app", this.props)
     return (
       <Router>
         <div className="App"> 

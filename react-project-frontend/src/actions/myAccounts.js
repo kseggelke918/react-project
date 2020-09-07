@@ -63,7 +63,5 @@ export const createAccount = (accountData, history) => {
             }
             
         })
-        .then(console.log)
-        .catch(console.log)
     }
 }
