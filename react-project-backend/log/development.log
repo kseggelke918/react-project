@@ -21597,3 +21597,266 @@ Completed 200 OK in 28ms (Views: 2.4ms | ActiveRecord: 4.5ms | Allocations: 5233
   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
   [1m[36mTransaction Create (0.6ms)[0m  [1m[32mINSERT INTO "transactions" ("amount", "debit_credit", "merchant", "account_id", "user_id", "date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["amount", 10.0], ["debit_credit", "credit"], ["merchant", "direct deposit"], ["account_id", 2], ["user_id", 2], ["date", "2020-09-17 00:00:00"], ["created_at", "2020-09-17 21:16:17.389515"], ["updated_at", "2020-09-17 21:16:17.389515"]]
   [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mAccount Load (0.6ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts"[0m
+Started GET "/api/v1/get_current_user" for ::1 at 2020-09-17 15:19:31 -0600
+  [1m[35m (11.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::SessionsController#get_current_user as */*
+  Parameters: {"session"=>{}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+Completed 200 OK in 30ms (Views: 0.8ms | ActiveRecord: 1.3ms | Allocations: 3694)
+
+
+Started POST "/api/v1/login" for ::1 at 2020-09-17 15:20:55 -0600
+Processing by Api::V1::SessionsController#create as */*
+  Parameters: {"username"=>"katie", "password"=>"[FILTERED]", "session"=>{"username"=>"katie", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "katie"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:3:in `create'
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.4ms | Allocations: 782)
+
+
+Started POST "/api/v1/login" for ::1 at 2020-09-17 15:21:04 -0600
+Processing by Api::V1::SessionsController#create as */*
+  Parameters: {"username"=>"katieS", "password"=>"[FILTERED]", "session"=>{"username"=>"katieS", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "katieS"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:3:in `create'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "accounts"."id" FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:7:in `create'
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "transactions"."id" FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:7:in `create'
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:7:in `create'
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:7:in `create'
+Completed 200 OK in 476ms (Views: 73.7ms | ActiveRecord: 6.3ms | Allocations: 27604)
+
+
+Started GET "/api/v1/users/1/accounts" for ::1 at 2020-09-17 15:21:05 -0600
+Processing by Api::V1::AccountsController#index as */*
+  Parameters: {"user_id"=>"1", "account"=>{}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:35:in `set_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mAccount Load (0.4ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (4.4ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 1]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+Completed 200 OK in 60ms (Views: 11.7ms | ActiveRecord: 5.7ms | Allocations: 4285)
+
+
+Started POST "/api/v1/users/1/accounts" for ::1 at 2020-09-17 15:21:25 -0600
+Processing by Api::V1::AccountsController#create as */*
+  Parameters: {"acct_type"=>"savings", "balance"=>"500", "user_id"=>"1", "account"=>{"acct_type"=>"savings", "balance"=>"500", "user_id"=>"1"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:35:in `set_user'
+[31mUnpermitted parameter: :user_id[0m
+  [1m[36mAccount Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "accounts" WHERE "accounts"."acct_number" = ? LIMIT ?[0m  [["acct_number", 871431], ["LIMIT", 1]]
+  ↳ app/models/account.rb:24:in `account_number_generator'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/accounts_controller.rb:15:in `create'
+  [1m[36mAccount Create (1.4ms)[0m  [1m[32mINSERT INTO "accounts" ("acct_number", "acct_type", "balance", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["acct_number", 871431], ["acct_type", "savings"], ["balance", 500.0], ["user_id", 1], ["created_at", "2020-09-17 21:21:25.514150"], ["updated_at", "2020-09-17 21:21:25.514150"]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:15:in `create'
+  [1m[35m (3.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/accounts_controller.rb:15:in `create'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 3]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:16:in `create'
+Completed 200 OK in 27ms (Views: 2.9ms | ActiveRecord: 5.9ms | Allocations: 5609)
+
+
+Started POST "/api/v1/signup" for ::1 at 2020-09-17 15:21:59 -0600
+Processing by Api::V1::UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"Test", "username"=>"TestUser", "password"=>"[FILTERED]"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/users_controller.rb:11:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "TestUser"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:11:in `create'
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "username", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Test"], ["username", "TestUser"], ["password_digest", "$2a$12$7Bq8FDpsuOG9nRK5NBh.n.RLziQ1xC6GyCh7ARkpcW096j6WYitOy"], ["created_at", "2020-09-17 21:21:59.741793"], ["updated_at", "2020-09-17 21:21:59.741793"]]
+  ↳ app/controllers/api/v1/users_controller.rb:11:in `create'
+  [1m[35m (15.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/users_controller.rb:11:in `create'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "accounts"."id" FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 3]]
+  ↳ app/controllers/api/v1/users_controller.rb:13:in `create'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "transactions"."id" FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 3]]
+  ↳ app/controllers/api/v1/users_controller.rb:13:in `create'
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 3]]
+  ↳ app/controllers/api/v1/users_controller.rb:13:in `create'
+  [1m[36mTransaction Load (0.1ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 3]]
+  ↳ app/controllers/api/v1/users_controller.rb:13:in `create'
+Completed 200 OK in 389ms (Views: 11.2ms | ActiveRecord: 17.8ms | Allocations: 8207)
+
+
+Started GET "/api/v1/users/3/accounts" for ::1 at 2020-09-17 15:21:59 -0600
+Processing by Api::V1::AccountsController#index as */*
+  Parameters: {"user_id"=>"3", "account"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:35:in `set_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 3]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+Completed 200 OK in 13ms (Views: 4.8ms | ActiveRecord: 0.8ms | Allocations: 2235)
+
+
+Started POST "/api/v1/users/3/accounts" for ::1 at 2020-09-17 15:22:11 -0600
+Processing by Api::V1::AccountsController#create as */*
+  Parameters: {"acct_type"=>"checking", "balance"=>"1000", "user_id"=>"3", "account"=>{"acct_type"=>"checking", "balance"=>"1000", "user_id"=>"3"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:35:in `set_user'
+[31mUnpermitted parameter: :user_id[0m
+  [1m[36mAccount Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "accounts" WHERE "accounts"."acct_number" = ? LIMIT ?[0m  [["acct_number", 344005], ["LIMIT", 1]]
+  ↳ app/models/account.rb:24:in `account_number_generator'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/accounts_controller.rb:15:in `create'
+  [1m[36mAccount Create (1.3ms)[0m  [1m[32mINSERT INTO "accounts" ("acct_number", "acct_type", "balance", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["acct_number", 344005], ["acct_type", "checking"], ["balance", 1000.0], ["user_id", 3], ["created_at", "2020-09-17 21:22:11.821562"], ["updated_at", "2020-09-17 21:22:11.821562"]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:15:in `create'
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/accounts_controller.rb:15:in `create'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 4]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:16:in `create'
+Completed 200 OK in 27ms (Views: 4.7ms | ActiveRecord: 3.9ms | Allocations: 5668)
+
+
+Started POST "/api/v1/login" for ::1 at 2020-09-17 15:22:37 -0600
+Processing by Api::V1::SessionsController#create as */*
+  Parameters: {"username"=>"katieS", "password"=>"[FILTERED]", "session"=>{"username"=>"katieS", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "katieS"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:3:in `create'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "accounts"."id" FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:7:in `create'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "transactions"."id" FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:7:in `create'
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:7:in `create'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" INNER JOIN "accounts" ON "transactions"."account_id" = "accounts"."id" WHERE "accounts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:7:in `create'
+Completed 200 OK in 397ms (Views: 34.4ms | ActiveRecord: 1.0ms | Allocations: 5876)
+
+
+Started GET "/api/v1/users/1/accounts" for ::1 at 2020-09-17 15:22:37 -0600
+Processing by Api::V1::AccountsController#index as */*
+  Parameters: {"user_id"=>"1", "account"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:35:in `set_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `current_user'
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 1]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+  [1m[36mTransaction Load (0.9ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."account_id" = ?[0m  [["account_id", 3]]
+  ↳ app/controllers/api/v1/accounts_controller.rb:7:in `index'
+Completed 200 OK in 21ms (Views: 14.8ms | ActiveRecord: 1.8ms | Allocations: 4877)
+
+
+  [1m[35m (13.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "accounts"[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "accounts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "acct_number" integer, "acct_type" varchar, "balance" float, "user_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "transactions"[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "transactions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" float, "debit_credit" varchar, "merchant" varchar, "account_id" integer, "user_id" integer, "date" datetime, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "username" varchar, "password_digest" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200609220312)[0m
+  [1m[35m (37.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200609214355),
+(20200609214642);
+
+[0m
+  [1m[35m (11.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-01-06 19:28:10.998814"], ["updated_at", "2021-01-06 19:28:10.998814"]]
+  [1m[35m (7.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (12.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "8847ded27639d6cca472c5cb95c2e723b75fc8e4"], ["created_at", "2021-01-06 19:28:11.048696"], ["updated_at", "2021-01-06 19:28:11.048696"]]
+  [1m[35m (17.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "accounts"[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "accounts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "acct_number" integer, "acct_type" varchar, "balance" float, "user_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "transactions"[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "transactions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" float, "debit_credit" varchar, "merchant" varchar, "account_id" integer, "user_id" integer, "date" datetime, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "username" varchar, "password_digest" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200609220312)[0m
+  [1m[35m (6.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200609214355),
+(20200609214642);
+
+[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-01-06 19:28:11.214415"], ["updated_at", "2021-01-06 19:28:11.214415"]]
+  [1m[35m (2.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (2.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2021-01-06 19:28:11.246755"], ["key", "environment"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "8847ded27639d6cca472c5cb95c2e723b75fc8e4"], ["created_at", "2021-01-06 19:28:11.270308"], ["updated_at", "2021-01-06 19:28:11.270308"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "katieS"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "username", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Katie"], ["username", "katieS"], ["password_digest", "$2a$12$7LEf9cSrZTMCgY9d7mNS.uQyOXeWNLJFo726knsjl098AeTtkpery"], ["created_at", "2021-01-06 19:28:12.148378"], ["updated_at", "2021-01-06 19:28:12.148378"]]
+  [1m[35m (13.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "susietest"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "username", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Susie"], ["username", "susietest"], ["password_digest", "$2a$12$cyCpvOhLt6.0glHTmZMah.hpwdpqjortN9qU91irsphTufkAfMkgu"], ["created_at", "2021-01-06 19:28:12.848977"], ["updated_at", "2021-01-06 19:28:12.848977"]]
+  [1m[35m (16.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAccount Create (0.8ms)[0m  [1m[32mINSERT INTO "accounts" ("acct_number", "acct_type", "balance", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["acct_number", 12345], ["acct_type", "checking"], ["balance", 100.0], ["user_id", 1], ["created_at", "2021-01-06 19:28:13.001007"], ["updated_at", "2021-01-06 19:28:13.001007"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mAccount Create (0.5ms)[0m  [1m[32mINSERT INTO "accounts" ("acct_number", "acct_type", "balance", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["acct_number", 98706], ["acct_type", "savings"], ["balance", 50.0], ["user_id", 2], ["created_at", "2021-01-06 19:28:13.014721"], ["updated_at", "2021-01-06 19:28:13.014721"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTransaction Create (1.1ms)[0m  [1m[32mINSERT INTO "transactions" ("amount", "debit_credit", "merchant", "account_id", "user_id", "date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["amount", 55.32], ["debit_credit", "debit"], ["merchant", "amazon"], ["account_id", 1], ["user_id", 1], ["date", "2021-01-06 00:00:00"], ["created_at", "2021-01-06 19:28:13.127313"], ["updated_at", "2021-01-06 19:28:13.127313"]]
+  [1m[35m (2.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTransaction Create (0.6ms)[0m  [1m[32mINSERT INTO "transactions" ("amount", "debit_credit", "merchant", "account_id", "user_id", "date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["amount", 10.0], ["debit_credit", "credit"], ["merchant", "direct deposit"], ["account_id", 1], ["user_id", 1], ["date", "2021-01-06 00:00:00"], ["created_at", "2021-01-06 19:28:13.164343"], ["updated_at", "2021-01-06 19:28:13.164343"]]
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAccount Load (0.4ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTransaction Create (0.9ms)[0m  [1m[32mINSERT INTO "transactions" ("amount", "debit_credit", "merchant", "account_id", "user_id", "date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["amount", 10.0], ["debit_credit", "debit"], ["merchant", "atm"], ["account_id", 2], ["user_id", 2], ["date", "2021-01-06 00:00:00"], ["created_at", "2021-01-06 19:28:13.205752"], ["updated_at", "2021-01-06 19:28:13.205752"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAccount Load (0.5ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTransaction Create (0.8ms)[0m  [1m[32mINSERT INTO "transactions" ("amount", "debit_credit", "merchant", "account_id", "user_id", "date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["amount", 10.0], ["debit_credit", "credit"], ["merchant", "direct deposit"], ["account_id", 2], ["user_id", 2], ["date", "2021-01-06 00:00:00"], ["created_at", "2021-01-06 19:28:13.267501"], ["updated_at", "2021-01-06 19:28:13.267501"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mUser Load (13.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts"[0m
