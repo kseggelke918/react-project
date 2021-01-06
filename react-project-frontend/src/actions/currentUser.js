@@ -82,7 +82,7 @@ export const logout = () => {
         //log out user on front end before fetch
         dispatch(clearCurrentUser())
         dispatch(clearAccounts())
-        return fetch('http://localhost3000/api/v1/logout', {
+        return fetch('http://localhost:3000/api/v1/logout', {
            credientials: 'include', 
            method: 'DELETE' 
         })
