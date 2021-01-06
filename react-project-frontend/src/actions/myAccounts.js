@@ -1,5 +1,6 @@
 import { resetNewAccountForm } from './newAccountForm'
 
+// sync action creators
 export const setMyAccounts = (accounts) => {
     return {
         type: "SET_MY_ACCOUNTS",
@@ -20,6 +21,7 @@ export const addAccount = account => {
     }
 }
 
+// async action creators - have to wait for something to update store
 export const getMyAccounts = (user) => {
     return dispatch => {
         return fetch(`http://localhost:3000/api/v1/users/${user.data.id}/accounts`, {
@@ -40,6 +42,7 @@ export const getMyAccounts = (user) => {
     }
 }
 
+// this will return a function that takes dispatch
 export const createAccount = (accountData, history) => {
     const userId = accountData.user_id.data.id
     return dispatch => {
@@ -57,8 +60,11 @@ export const createAccount = (accountData, history) => {
             if (response.error) {
                 alert(response.error)
             } else {
+                // add acct to store
                 dispatch(addAccount(response.data))
+                // reset form after submission
                 dispatch(resetNewAccountForm())
+                // re-route
                 history.push(`/accounts/${response.data.id}`)
             }
             

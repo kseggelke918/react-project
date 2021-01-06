@@ -1,3 +1,4 @@
+// sync action creators
 
 export const updateSignupForm = formData => {
     return {

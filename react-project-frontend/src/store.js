@@ -5,6 +5,7 @@ import myAccounts from './reducers/myAccounts.js'
 import signupForm from './reducers/signupForm.js'
 import newAccountForm from './reducers/newAccountForm.js'
 import thunk from 'redux-thunk'
+// thunk is only needed if you want to make requests to a backend or other api
 
 const reducer = combineReducers({
     currentUser: currentUser, 
